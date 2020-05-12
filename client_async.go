@@ -104,7 +104,7 @@ func defaultClient() *AsyncClient {
 func (c *AsyncClient) Handle(topic string, h TopicHandler) {
 	if h != nil {
 		c.log.v("CLI registered topic handler, topic =", topic)
-		c.router.Handle(topic, func(client Client, topic string, qos QosLevel, msg []byte) {
+		c.router.Handle(topic, func(client Client, topic string, qos QosLevel, msg []byte, props PublishProps) {
 			h(topic, qos, msg)
 		})
 	}
